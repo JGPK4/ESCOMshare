@@ -32,18 +32,18 @@ public class REPL {
             System.out.println("Modo REPL. Para salir, presiona CTRL+D.");
 
             // Bucle que sigue leyendo líneas de entrada hasta encontrar EOF
-            try {
-                while (true) {
+            while (true) {
+                try {
                     String input = scanner.nextLine();
                     System.out.println(input);  // Imprime lo que el usuario ingresa
+                } catch (NoSuchElementException e) {
+                    // Fin del modo REPL
+                    break;
                 }
-            } catch (NoSuchElementException e) {
-                // Este mensaje se imprime cuando el programa detecta EOF (CTRL+D)
-                System.out.println("Fin del modo REPL.");
-            } finally {
-                // Cierra el scanner para liberar recursos
-                scanner.close();
             }
+            // Cierra el scanner para liberar recursos
+            scanner.close();
         }
     }
 }
+
